@@ -7,7 +7,7 @@ import shutil
 def save_sales_to_local_disk(date: str, raw_dir: str) -> None:
 
     current_dir = os.path.dirname(os.path.abspath(__file__))
-    parent_dir = os.path.dirname(current_dir)
+    parent_dir = os.path.dirname(os.path.dirname(current_dir))
     file_storage_dir = os.path.join(parent_dir,  'file_storage')
     if not os.path.exists(file_storage_dir):
         os.makedirs(file_storage_dir)
