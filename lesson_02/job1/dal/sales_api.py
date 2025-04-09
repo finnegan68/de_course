@@ -44,6 +44,5 @@ def get_sales(date: str) -> List[Dict[str, Any]]:
             
         all_sales.extend(data)
         page += 1
-
-    print(all_sales)
+        
     return all_sales

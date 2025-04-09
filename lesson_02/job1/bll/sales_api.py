@@ -12,17 +12,20 @@ def save_sales_to_local_disk(date: str, raw_dir: str) -> None:
     if not os.path.exists(file_storage_dir):
         os.makedirs(file_storage_dir)
         print(f"Directory '{file_storage_dir}' created.")
-    else:
-        shutil.rmtree(file_storage_dir)
-        print(f"Directory '{file_storage_dir}' has been cleaned.")
-    
-    sales = sales_api.get_sales(date)
 
     sales_data_path = file_storage_dir
     for folder in raw_dir.split('/'):
         sales_data_path += folder + '\\'
+    
+    if os.path.exists(sales_data_path):
+        shutil.rmtree(sales_data_path)
+        print(f"Cleaned existing directory: {sales_data_path}")
+    else:
+        print(f"Creating new directory: {sales_data_path}")
+
+    os.makedirs(sales_data_path, exist_ok=True)
    
-    os.makedirs(sales_data_path)
+    sales = sales_api.get_sales(date)
     filename = f"sales_{date}.json"
     with open(os.path.join(sales_data_path, filename), 'w') as f:
         json.dump(sales, f)

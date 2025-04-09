@@ -22,21 +22,8 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST'])
 def main() -> flask_typing.ResponseReturnValue:
-    """
-    Controller that accepts command via HTTP and
-    trigger business logic layer
-
-    Proposed POST body in JSON:
-    {
-      "data: "2022-08-09",
-      "raw_dir": "/path/to/my_dir/raw/sales/2022-08-09"
-    }
-    """
-    input_data: dict = request.json
-    # TODO: implement me
-
-    date = input_data.get('date')
-    raw_dir = input_data.get('raw_dir')
+    date = request.args.get('date')
+    raw_dir = request.args.get('raw_dir')
 
     if not date:
         return {
