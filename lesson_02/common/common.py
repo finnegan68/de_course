@@ -21,6 +21,7 @@ def get_path_to_sales_data(path_from_request : str) -> str:
         print(f"Directory '{sales_data_path}' created.")
     else:
         shutil.rmtree(sales_data_path)
+        os.makedirs(sales_data_path)
         print(f"Cleaned existing directory: {sales_data_path}")
     return sales_data_path
 
