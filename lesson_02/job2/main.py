@@ -10,7 +10,7 @@ app = Flask(__name__)
 def main() -> flask_typing.ResponseReturnValue:
     '''
     Send POST request this type
-    localhost:8081?raw_dir=/raw/sales/2022-08-10&stg_dir=/stg/sales/2022-08-10
+    localhost:8082?raw_dir=/raw/sales/2022-08-10&stg_dir=/stg/sales/2022-08-10
     '''
     stg_dir = request.args.get('stg_dir')
     raw_dir = request.args.get('raw_dir')
