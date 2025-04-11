@@ -4,7 +4,6 @@ and trigger business logic layer
 """
 from flask import Flask, request
 from flask import typing as flask_typing
-
 from job1.bll.sales_api import save_sales_to_local_disk
 from dotenv import load_dotenv
 import os
@@ -29,9 +28,9 @@ def main() -> flask_typing.ResponseReturnValue:
     date = request.args.get('date')
     raw_dir = request.args.get('raw_dir')
 
-    if not date:
+    if not date or not raw_dir:
         return {
-            "message": "date parameter missed",
+            "message": "date or raw_dir param missed",
         }, 400
 
     save_sales_to_local_disk(date=date, raw_dir=raw_dir)
