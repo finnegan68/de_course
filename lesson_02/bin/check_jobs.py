@@ -1,8 +1,10 @@
 import os
 import time
 import requests
+from dotenv import load_dotenv
 
 
+load_dotenv()
 BASE_DIR = os.environ.get("BASE_DIR")
 
 if not BASE_DIR:
@@ -20,8 +22,8 @@ def run_job1():
     print("Starting job1:")
     resp = requests.post(
         url=f'http://localhost:{JOB1_PORT}/',
-        json={
-            "date": "2022-08-09",
+        params={
+            "date": '2022-08-10',
             "raw_dir": RAW_DIR
         }
     )
@@ -33,7 +35,7 @@ def run_job2():
     print("Starting job2:")
     resp = requests.post(
         url=f'http://localhost:{JOB2_PORT}/',
-        json={
+        params={
             "raw_dir": RAW_DIR,
             "stg_dir": STG_DIR
         }
