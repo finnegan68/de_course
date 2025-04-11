@@ -1,36 +1,40 @@
 import os
+import shutil
 import json
 from fastavro import writer, parse_schema
 from datetime import date as dt_date
 
 
-def save_sales_to_avro(raw_dir:str, stg_dir:str) -> None:
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    parent_dir = os.path.dirname(os.path.dirname(current_dir))
-    file_storage_dir = os.path.join(parent_dir,  'file_storage')
+def convert_path_to_windows_format(some_path: str) -> str:
+    if some_path[0]=='/':
+        some_path = some_path[1:]
+    return some_path.replace('/', '\\')
 
-    sales_data_path = file_storage_dir
-    for folder in raw_dir.split('/'):
-        sales_data_path += folder + '\\'
+
+def save_sales_to_avro(raw_dir:str, stg_dir:str) -> None:
+    raw_dir = convert_path_to_windows_format(raw_dir)
+    stg_dir = convert_path_to_windows_format(stg_dir)
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    root = os.path.dirname(os.path.dirname(current_dir))
+    sales_data_path = os.path.join(root,  raw_dir)
 
     if not os.path.exists(sales_data_path):
         print(f'There is not data in {sales_data_path}. Exit program.')
         return
     
     for file in os.listdir(sales_data_path):
-        json_path = os.path.join(sales_data_path, file)
-        json_to_avro(json_path, stg_dir)
+        json_to_avro(sales_data_path, file, stg_dir)
         
 
-
-def json_to_avro(json_file_path: str, to_folder: str) -> None:
+def json_to_avro(data_path: str, filename: str, to_folder: str) -> None:
+    json_file_path = os.path.join(data_path, filename)
     with open(json_file_path, 'r') as f:
         records = json.load(f)
-    filename = json_file_path.split('\\')[-1]
-
+    
+    avro_filename = filename.split('.')[0] + '.avro'
     schema = {
         "type": "record",
-        "name": filename,
+        "name": avro_filename,
         "fields": [
             {"name": "client", "type": "string"},
             {"name": "purchase_date", "type": "string"},
@@ -38,18 +42,17 @@ def json_to_avro(json_file_path: str, to_folder: str) -> None:
             {"name": "price", "type": "float"},
         ]
     }
-
     parsed_schema = parse_schema(schema)
 
-    # Generate Avro file path
-    date = to_folder.split('/')[-1]
-    avro_filename = f"sales_{date}.avro"
-    avro_file_path = os.path.join(to_folder,  avro_filename).replace('/', '\\')
+    if not os.path.exists(to_folder):
+        os.makedirs(to_folder)
+        print(f"Directory '{to_folder}' created.")
+    else:
+        shutil.rmtree(to_folder)
+        os.makedirs(to_folder)
+        print(f"Cleaned existing directory: {to_folder}")
     
-    avro_file_path = json_file_path.split('file_storage')[0] + 'file_storage' + avro_file_path
-    print(avro_file_path)
-
-    os.makedirs(os.path.dirname(avro_file_path), exist_ok=True)
+    avro_file_path = os.path.join(to_folder,  avro_filename)
     with open(avro_file_path, 'wb') as out:
         writer(out, parsed_schema, records)
 
