@@ -1,3 +1,4 @@
+from common.common import get_path_to_sales_data
 from job1.dal import local_disk, sales_api
 import os
 import json
@@ -5,27 +6,9 @@ import shutil
 
 
 def save_sales_to_local_disk(date: str, raw_dir: str) -> None:
-
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    parent_dir = os.path.dirname(os.path.dirname(current_dir))
-    file_storage_dir = os.path.join(parent_dir,  'file_storage')
-    if not os.path.exists(file_storage_dir):
-        os.makedirs(file_storage_dir)
-        print(f"Directory '{file_storage_dir}' created.")
-
-    sales_data_path = file_storage_dir
-    for folder in raw_dir.split('/'):
-        sales_data_path += folder + '\\'
-    
-    if os.path.exists(sales_data_path):
-        shutil.rmtree(sales_data_path)
-        print(f"Cleaned existing directory: {sales_data_path}")
-    else:
-        print(f"Creating new directory: {sales_data_path}")
-
-    os.makedirs(sales_data_path, exist_ok=True)
-   
+   sales_data_path = get_path_to_sales_data(raw_dir)
     sales = sales_api.get_sales(date)
     filename = f"sales_{date}.json"
     with open(os.path.join(sales_data_path, filename), 'w') as f:
         json.dump(sales, f)
+
