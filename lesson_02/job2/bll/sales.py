@@ -3,19 +3,21 @@ import shutil
 import json
 from fastavro import writer, parse_schema
 from datetime import date as dt_date
+from util.util import get_root
 
 
-def convert_path_to_windows_format(some_path: str) -> str:
+def format_path(some_path: str) -> str:
     if some_path[0]=='/':
         some_path = some_path[1:]
     return some_path.replace('/', '\\')
 
 
 def save_sales_to_avro(raw_dir:str, stg_dir:str) -> None:
-    raw_dir = convert_path_to_windows_format(raw_dir)
-    stg_dir = convert_path_to_windows_format(stg_dir)
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    root = os.path.dirname(os.path.dirname(current_dir))
+    raw_dir = format_path(raw_dir)
+    stg_dir = format_path(stg_dir)
+    #current_dir = os.path.dirname(os.path.abspath(__file__))
+    #root = os.path.dirname(os.path.dirname(current_dir))
+    root = get_root()
     sales_data_path = os.path.join(root,  raw_dir)
 
     if not os.path.exists(sales_data_path):

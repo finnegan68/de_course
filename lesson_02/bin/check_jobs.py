@@ -6,13 +6,12 @@ from dotenv import load_dotenv
 
 load_dotenv()
 BASE_DIR = os.environ.get("BASE_DIR")
+JOB1_PORT = os.environ.get("JOB1_PORT")
+JOB2_PORT = os.environ.get("JOB2_PORT")
 
 if not BASE_DIR:
     print("BASE_DIR environment variable must be set")
     exit(1)
-
-JOB1_PORT = 8081
-JOB2_PORT = 8082
 
 RAW_DIR = os.path.join(BASE_DIR, "raw", "sales", "2022-08-09")
 STG_DIR = os.path.join(BASE_DIR, "stg", "sales", "2022-08-09")
