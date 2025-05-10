@@ -1,9 +1,25 @@
 from airflow import DAG
-from airflow.operators.python import PythonOperator
-from airflow.operators.email import EmailOperator
-from airflow.utils.dates import days_ago
-from airflow.operators.bash import BashOperator
-import subprocess
+from datetime import timedelta
+from datetime import datetime
+import os
+from dbt_operator import DbtOperator
+
+
+ANALYTICS_DB = os.getenv('ANALYTICS_DB', 'analytics')
+PROJECT_DIR = os.getenv('AIRFLOW_HOME')+"/dags/dbt/models"
+PROFILE = 'homework'
+
+# Environment variables to pass to dbt
+env_vars = {
+    'ANALYTICS_DB': ANALYTICS_DB,
+    'DBT_PROFILE': PROFILE
+}
+
+# Example of variables to pass to dbt
+dbt_vars = {
+    'is_test': False,
+    'data_date': '{{ ds }}',  # Uses Airflow's ds (execution date) macro
+}
 
 # Default arguments for the DAG
 default_args = {
@@ -25,15 +41,14 @@ with DAG(
 ) as dag:
 
     # Step 1: Run dbt model
-    run_dbt = BashOperator(
-        task_id='run_dbt_model',
-        bash_command="""
-        cd /opt/airflow/dbt/homework && \
-        dbt run --select mart.iris_processed
-        """,
-        env={
-            'DBT_PROFILES_DIR': '/opt/airflow/dbt'
-        }
+    dbt_run = DbtOperator(
+        task_id='dbt_run',
+        profile=PROFILE,
+        project_dir=PROJECT_DIR,
+        # Example of selecting specific models
+        models=['mart'],  # This selects all staging model
+        env_vars=env_vars,
+        vars=dbt_vars,
     )
 
 
