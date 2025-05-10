@@ -4,6 +4,8 @@ from datetime import datetime
 import os
 from dbt_operator import DbtOperator
 from airflow.utils.dates import days_ago
+from python_scripts.iris_ml_processor import process_iris_data
+
 
 
 ANALYTICS_DB = os.getenv('ANALYTICS_DB', 'analytics')
@@ -53,12 +55,10 @@ with DAG(
     )
 
 
-    def train_model():
-        subprocess.run(['python', '/opt/airflow/dags/python_scripts/train_model.py'], check=True)
-
     train_model_task = PythonOperator(
         task_id='train_model',
-        python_callable=train_model,
+        python_callable=process_iris_data,
+        provide_context=True,
     )
 
 
