@@ -52,7 +52,7 @@ run_dbt = DbtOperator(
         command='run',
         profile=PROFILE,
         project_dir=PROJECT_DIR,
-        models=['models/mart'],  
+        models=['models/mart','models/staging'],  
         env_vars=env_vars,
         vars=dbt_vars,
     )
