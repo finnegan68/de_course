@@ -164,3 +164,635 @@
 [0m11:29:39.662868 [debug] [MainThread]: Flushing usage events
 [0m11:29:39.903968 [debug] [MainThread]: An error was encountered while trying to flush usage events
 [0m11:29:40.202998 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:37:41.016046 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff822769a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff81392550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff813924f0>]}
+
+
+============================== 15:37:41.023188 | 09b5e298-63e7-4321-a0d6-969f01eccfc1 ==============================
+[0m15:37:41.023188 [info ] [MainThread]: Running with dbt=1.9.4
+[0m15:37:41.024319 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/opt/airflow/dags/dbt', 'fail_fast': 'False', 'debug': 'False', 'log_path': '/opt/airflow/dags/dbt/homework/logs', 'version_check': 'True', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'log_format': 'default', 'target_path': 'None', 'invocation_command': 'dbt --profile my_dbt_project run --project-dir=/opt/airflow/dags/dbt/homework --models models/mart --vars {"is_test": false, "data_date": "2025-05-10"}', 'send_anonymous_usage_stats': 'True'}
+[0m15:37:41.170006 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff80979940>]}
+[0m15:37:41.207564 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff80979460>]}
+[0m15:37:41.208605 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m15:37:41.274285 [debug] [MainThread]: checksum: a0841b9e95e4ad17bec1bf740851d7b012e6cf6b937585e2bd7e396b95b8b6ff, vars: {'data_date': '2025-05-10', 'is_test': False}, profile: my_dbt_project, target: , version: 1.9.4
+[0m15:37:41.276170 [info ] [MainThread]: Unable to do partial parsing because saved manifest not found. Starting full parse.
+[0m15:37:41.276749 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'partial_parser', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8083e760>]}
+[0m15:37:42.288436 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.homework.iris_dataset
+[0m15:37:42.296147 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7f961f10>]}
+[0m15:37:42.362239 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dags/dbt/homework/target/manifest.json
+[0m15:37:42.367155 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dags/dbt/homework/target/semantic_manifest.json
+[0m15:37:42.379080 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7f968220>]}
+[0m15:37:42.379634 [info ] [MainThread]: Found 2 models, 1 source, 587 macros
+[0m15:37:42.380090 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7fa90bb0>]}
+[0m15:37:42.381192 [info ] [MainThread]: 
+[0m15:37:42.381607 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:37:42.382000 [info ] [MainThread]: 
+[0m15:37:42.382590 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m15:37:42.383351 [debug] [ThreadPool]: Acquiring new postgres connection 'list_analytics'
+[0m15:37:42.404329 [debug] [ThreadPool]: Using postgres connection "list_analytics"
+[0m15:37:42.404860 [debug] [ThreadPool]: On list_analytics: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "list_analytics"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m15:37:42.405317 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:37:42.415943 [debug] [ThreadPool]: SQL status: SELECT 6 in 0.011 seconds
+[0m15:37:42.416930 [debug] [ThreadPool]: On list_analytics: Close
+[0m15:37:42.419987 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_analytics, now list_analytics_analytics)
+[0m15:37:42.424404 [debug] [ThreadPool]: Using postgres connection "list_analytics_analytics"
+[0m15:37:42.424856 [debug] [ThreadPool]: On list_analytics_analytics: BEGIN
+[0m15:37:42.425251 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:37:42.435714 [debug] [ThreadPool]: SQL status: BEGIN in 0.010 seconds
+[0m15:37:42.436217 [debug] [ThreadPool]: Using postgres connection "list_analytics_analytics"
+[0m15:37:42.436615 [debug] [ThreadPool]: On list_analytics_analytics: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "list_analytics_analytics"} */
+select
+      'analytics' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'analytics' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'analytics' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics'
+  
+[0m15:37:42.440592 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.004 seconds
+[0m15:37:42.441612 [debug] [ThreadPool]: On list_analytics_analytics: ROLLBACK
+[0m15:37:42.442224 [debug] [ThreadPool]: On list_analytics_analytics: Close
+[0m15:37:42.445929 [debug] [MainThread]: Using postgres connection "master"
+[0m15:37:42.446546 [debug] [MainThread]: On master: BEGIN
+[0m15:37:42.447008 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:37:42.455424 [debug] [MainThread]: SQL status: BEGIN in 0.008 seconds
+[0m15:37:42.455878 [debug] [MainThread]: Using postgres connection "master"
+[0m15:37:42.456322 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m15:37:42.459976 [debug] [MainThread]: SQL status: SELECT 0 in 0.003 seconds
+[0m15:37:42.460928 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff80972820>]}
+[0m15:37:42.461452 [debug] [MainThread]: On master: ROLLBACK
+[0m15:37:42.462006 [debug] [MainThread]: Using postgres connection "master"
+[0m15:37:42.462398 [debug] [MainThread]: On master: BEGIN
+[0m15:37:42.462947 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m15:37:42.463352 [debug] [MainThread]: On master: COMMIT
+[0m15:37:42.463723 [debug] [MainThread]: Using postgres connection "master"
+[0m15:37:42.464094 [debug] [MainThread]: On master: COMMIT
+[0m15:37:42.464554 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m15:37:42.464917 [debug] [MainThread]: On master: Close
+[0m15:37:42.467901 [debug] [Thread-1  ]: Began running node model.homework.iris_processed
+[0m15:37:42.468622 [info ] [Thread-1  ]: 1 of 1 START sql table model analytics.iris_processed .......................... [RUN]
+[0m15:37:42.469253 [debug] [Thread-1  ]: Re-using an available connection from the pool (formerly list_analytics_analytics, now model.homework.iris_processed)
+[0m15:37:42.469697 [debug] [Thread-1  ]: Began compiling node model.homework.iris_processed
+[0m15:37:42.482332 [debug] [Thread-1  ]: Using postgres connection "model.homework.iris_processed"
+[0m15:37:42.482864 [debug] [Thread-1  ]: On model.homework.iris_processed: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "node_id": "model.homework.iris_processed"} */
+
+        select percentile_cont(0.5) within group (order by sepal_length ) from "analytics"."analytics"."stg_iris"
+    
+[0m15:37:42.483278 [debug] [Thread-1  ]: Opening a new connection, currently in state closed
+[0m15:37:42.490990 [debug] [Thread-1  ]: Postgres adapter: Postgres error: relation "analytics.stg_iris" does not exist
+LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                             ^
+
+[0m15:37:42.492651 [debug] [Thread-1  ]: On model.homework.iris_processed: Close
+[0m15:37:42.494478 [debug] [Thread-1  ]: Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^
+[0m15:37:42.495738 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '09b5e298-63e7-4321-a0d6-969f01eccfc1', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff82148850>]}
+[0m15:37:42.496339 [error] [Thread-1  ]: 1 of 1 ERROR creating sql table model analytics.iris_processed ................. [[31mERROR[0m in 0.03s]
+[0m15:37:42.496840 [debug] [Thread-1  ]: Finished running node model.homework.iris_processed
+[0m15:37:42.497305 [debug] [Thread-7  ]: Marking all children of 'model.homework.iris_processed' to be skipped because of status 'error'.  Reason: Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^.
+[0m15:37:42.498552 [debug] [MainThread]: Using postgres connection "master"
+[0m15:37:42.498886 [debug] [MainThread]: On master: BEGIN
+[0m15:37:42.499172 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:37:42.506361 [debug] [MainThread]: SQL status: BEGIN in 0.007 seconds
+[0m15:37:42.506780 [debug] [MainThread]: On master: COMMIT
+[0m15:37:42.507127 [debug] [MainThread]: Using postgres connection "master"
+[0m15:37:42.507513 [debug] [MainThread]: On master: COMMIT
+[0m15:37:42.507960 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m15:37:42.508305 [debug] [MainThread]: On master: Close
+[0m15:37:42.508727 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:37:42.509021 [debug] [MainThread]: Connection 'model.homework.iris_processed' was properly closed.
+[0m15:37:42.509358 [info ] [MainThread]: 
+[0m15:37:42.509725 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.13 seconds (0.13s).
+[0m15:37:42.510302 [debug] [MainThread]: Command end result
+[0m15:37:42.541887 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dags/dbt/homework/target/manifest.json
+[0m15:37:42.543569 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dags/dbt/homework/target/semantic_manifest.json
+[0m15:37:42.547592 [debug] [MainThread]: Wrote artifact RunExecutionResult to /opt/airflow/dags/dbt/homework/target/run_results.json
+[0m15:37:42.547968 [info ] [MainThread]: 
+[0m15:37:42.548401 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m15:37:42.548764 [info ] [MainThread]: 
+[0m15:37:42.549156 [error] [MainThread]:   Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^
+[0m15:37:42.549503 [info ] [MainThread]: 
+[0m15:37:42.549876 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m15:37:42.550660 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 1.573686, "process_in_blocks": "0", "process_kernel_time": 0.266527, "process_mem_max_rss": "111764", "process_out_blocks": "0", "process_user_time": 2.457526}
+[0m15:37:42.551165 [debug] [MainThread]: Command `dbt run` failed at 15:37:42.551108 after 1.57 seconds
+[0m15:37:42.551567 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff822769a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff827f4b80>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff80979460>]}
+[0m15:37:42.551972 [debug] [MainThread]: Flushing usage events
+[0m15:37:43.116356 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:40:44.461682 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7c89e9a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7b9ba550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7b9ba4f0>]}
+
+
+============================== 15:40:44.471038 | f7cc2bfc-72ff-4dc5-9d81-b7971fd76156 ==============================
+[0m15:40:44.471038 [info ] [MainThread]: Running with dbt=1.9.4
+[0m15:40:44.473608 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'debug': 'False', 'fail_fast': 'False', 'log_path': '/opt/airflow/dags/dbt/homework/logs', 'profiles_dir': '/opt/airflow/dags/dbt', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'invocation_command': 'dbt --profile my_dbt_project run --project-dir=/opt/airflow/dags/dbt/homework --models models/mart --vars {"is_test": false, "data_date": "2025-05-10"}', 'send_anonymous_usage_stats': 'True'}
+[0m15:40:44.675135 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7afa1940>]}
+[0m15:40:44.712801 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7afa1460>]}
+[0m15:40:44.713852 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m15:40:44.786053 [debug] [MainThread]: checksum: a0841b9e95e4ad17bec1bf740851d7b012e6cf6b937585e2bd7e396b95b8b6ff, vars: {'data_date': '2025-05-10', 'is_test': False}, profile: my_dbt_project, target: , version: 1.9.4
+[0m15:40:44.908480 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m15:40:44.909394 [debug] [MainThread]: Partial parsing: updated file: homework://models/mart/iris_processed.sql
+[0m15:40:45.175759 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.homework.iris_dataset
+[0m15:40:45.184233 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7a7b49d0>]}
+[0m15:40:45.258165 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dags/dbt/homework/target/manifest.json
+[0m15:40:45.263024 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dags/dbt/homework/target/semantic_manifest.json
+[0m15:40:45.274822 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7a7d8250>]}
+[0m15:40:45.275365 [info ] [MainThread]: Found 2 models, 1 source, 587 macros
+[0m15:40:45.275782 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7aa297c0>]}
+[0m15:40:45.277026 [info ] [MainThread]: 
+[0m15:40:45.277444 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:40:45.277841 [info ] [MainThread]: 
+[0m15:40:45.278353 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m15:40:45.279154 [debug] [ThreadPool]: Acquiring new postgres connection 'list_analytics'
+[0m15:40:45.303267 [debug] [ThreadPool]: Using postgres connection "list_analytics"
+[0m15:40:45.303910 [debug] [ThreadPool]: On list_analytics: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "list_analytics"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m15:40:45.304339 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:40:45.316276 [debug] [ThreadPool]: SQL status: SELECT 6 in 0.012 seconds
+[0m15:40:45.317614 [debug] [ThreadPool]: On list_analytics: Close
+[0m15:40:45.321588 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_analytics, now list_analytics_analytics)
+[0m15:40:45.326330 [debug] [ThreadPool]: Using postgres connection "list_analytics_analytics"
+[0m15:40:45.326863 [debug] [ThreadPool]: On list_analytics_analytics: BEGIN
+[0m15:40:45.327231 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:40:45.335930 [debug] [ThreadPool]: SQL status: BEGIN in 0.009 seconds
+[0m15:40:45.336430 [debug] [ThreadPool]: Using postgres connection "list_analytics_analytics"
+[0m15:40:45.336859 [debug] [ThreadPool]: On list_analytics_analytics: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "list_analytics_analytics"} */
+select
+      'analytics' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'analytics' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'analytics' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics'
+  
+[0m15:40:45.340782 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.003 seconds
+[0m15:40:45.341822 [debug] [ThreadPool]: On list_analytics_analytics: ROLLBACK
+[0m15:40:45.342358 [debug] [ThreadPool]: On list_analytics_analytics: Close
+[0m15:40:45.345938 [debug] [MainThread]: Using postgres connection "master"
+[0m15:40:45.346474 [debug] [MainThread]: On master: BEGIN
+[0m15:40:45.346877 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:40:45.354373 [debug] [MainThread]: SQL status: BEGIN in 0.007 seconds
+[0m15:40:45.354898 [debug] [MainThread]: Using postgres connection "master"
+[0m15:40:45.355421 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m15:40:45.359802 [debug] [MainThread]: SQL status: SELECT 0 in 0.004 seconds
+[0m15:40:45.360920 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7eb51f70>]}
+[0m15:40:45.361504 [debug] [MainThread]: On master: ROLLBACK
+[0m15:40:45.362295 [debug] [MainThread]: Using postgres connection "master"
+[0m15:40:45.362848 [debug] [MainThread]: On master: BEGIN
+[0m15:40:45.363519 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m15:40:45.363910 [debug] [MainThread]: On master: COMMIT
+[0m15:40:45.364280 [debug] [MainThread]: Using postgres connection "master"
+[0m15:40:45.364640 [debug] [MainThread]: On master: COMMIT
+[0m15:40:45.365122 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m15:40:45.365581 [debug] [MainThread]: On master: Close
+[0m15:40:45.368482 [debug] [Thread-1  ]: Began running node model.homework.iris_processed
+[0m15:40:45.369118 [info ] [Thread-1  ]: 1 of 1 START sql table model analytics.iris_processed .......................... [RUN]
+[0m15:40:45.369710 [debug] [Thread-1  ]: Re-using an available connection from the pool (formerly list_analytics_analytics, now model.homework.iris_processed)
+[0m15:40:45.370151 [debug] [Thread-1  ]: Began compiling node model.homework.iris_processed
+[0m15:40:45.383339 [debug] [Thread-1  ]: Using postgres connection "model.homework.iris_processed"
+[0m15:40:45.384061 [debug] [Thread-1  ]: On model.homework.iris_processed: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "node_id": "model.homework.iris_processed"} */
+
+        select percentile_cont(0.5) within group (order by sepal_length ) from "analytics"."analytics"."stg_iris"
+    
+[0m15:40:45.384584 [debug] [Thread-1  ]: Opening a new connection, currently in state closed
+[0m15:40:45.393615 [debug] [Thread-1  ]: Postgres adapter: Postgres error: relation "analytics.stg_iris" does not exist
+LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                             ^
+
+[0m15:40:45.395682 [debug] [Thread-1  ]: On model.homework.iris_processed: Close
+[0m15:40:45.397798 [debug] [Thread-1  ]: Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^
+[0m15:40:45.399432 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'f7cc2bfc-72ff-4dc5-9d81-b7971fd76156', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7c771850>]}
+[0m15:40:45.400350 [error] [Thread-1  ]: 1 of 1 ERROR creating sql table model analytics.iris_processed ................. [[31mERROR[0m in 0.03s]
+[0m15:40:45.401290 [debug] [Thread-1  ]: Finished running node model.homework.iris_processed
+[0m15:40:45.401980 [debug] [Thread-7  ]: Marking all children of 'model.homework.iris_processed' to be skipped because of status 'error'.  Reason: Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^.
+[0m15:40:45.403456 [debug] [MainThread]: Using postgres connection "master"
+[0m15:40:45.404010 [debug] [MainThread]: On master: BEGIN
+[0m15:40:45.404495 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:40:45.412561 [debug] [MainThread]: SQL status: BEGIN in 0.008 seconds
+[0m15:40:45.413112 [debug] [MainThread]: On master: COMMIT
+[0m15:40:45.413522 [debug] [MainThread]: Using postgres connection "master"
+[0m15:40:45.414048 [debug] [MainThread]: On master: COMMIT
+[0m15:40:45.414644 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m15:40:45.415066 [debug] [MainThread]: On master: Close
+[0m15:40:45.415618 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:40:45.416086 [debug] [MainThread]: Connection 'model.homework.iris_processed' was properly closed.
+[0m15:40:45.416581 [info ] [MainThread]: 
+[0m15:40:45.417486 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.14 seconds (0.14s).
+[0m15:40:45.418265 [debug] [MainThread]: Command end result
+[0m15:40:45.467441 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dags/dbt/homework/target/manifest.json
+[0m15:40:45.470202 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dags/dbt/homework/target/semantic_manifest.json
+[0m15:40:45.475224 [debug] [MainThread]: Wrote artifact RunExecutionResult to /opt/airflow/dags/dbt/homework/target/run_results.json
+[0m15:40:45.476114 [info ] [MainThread]: 
+[0m15:40:45.476744 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m15:40:45.477237 [info ] [MainThread]: 
+[0m15:40:45.477691 [error] [MainThread]:   Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^
+[0m15:40:45.478077 [info ] [MainThread]: 
+[0m15:40:45.478570 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m15:40:45.480106 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 1.0856076, "process_in_blocks": "0", "process_kernel_time": 0.240199, "process_mem_max_rss": "112420", "process_out_blocks": "0", "process_user_time": 1.894232}
+[0m15:40:45.480772 [debug] [MainThread]: Command `dbt run` failed at 15:40:45.480715 after 1.09 seconds
+[0m15:40:45.481334 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7c89e9a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7ae56c70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff7a7d8250>]}
+[0m15:40:45.481915 [debug] [MainThread]: Flushing usage events
+[0m15:40:46.035117 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:43:07.985278 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8c8429a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8b95e550>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8b95e4f0>]}
+
+
+============================== 15:43:07.990781 | b4a3deba-196f-4434-9168-7b7a7284d12f ==============================
+[0m15:43:07.990781 [info ] [MainThread]: Running with dbt=1.9.4
+[0m15:43:07.991468 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/opt/airflow/dags/dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': '/opt/airflow/dags/dbt/homework/logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'invocation_command': 'dbt --profile my_dbt_project run --project-dir=/opt/airflow/dags/dbt/homework --models models/mart --vars {"is_test": false, "data_date": "2025-05-10"}', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m15:43:08.122985 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'b4a3deba-196f-4434-9168-7b7a7284d12f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8af45940>]}
+[0m15:43:08.156021 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'b4a3deba-196f-4434-9168-7b7a7284d12f', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8af45460>]}
+[0m15:43:08.157050 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m15:43:08.221163 [debug] [MainThread]: checksum: a0841b9e95e4ad17bec1bf740851d7b012e6cf6b937585e2bd7e396b95b8b6ff, vars: {'data_date': '2025-05-10', 'is_test': False}, profile: my_dbt_project, target: , version: 1.9.4
+[0m15:43:08.334806 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m15:43:08.335597 [debug] [MainThread]: Partial parsing: updated file: homework://models/mart/iris_processed.sql
+[0m15:43:08.654473 [error] [MainThread]: Encountered an error:
+Compilation Error
+  Model 'model.homework.iris_processed' (models/mart/iris_processed.sql) depends on a node named 'iris_dataset' which was not found
+[0m15:43:08.655877 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.70960414, "process_in_blocks": "0", "process_kernel_time": 0.207734, "process_mem_max_rss": "100188", "process_out_blocks": "0", "process_user_time": 1.728429}
+[0m15:43:08.656580 [debug] [MainThread]: Command `dbt run` failed at 15:43:08.656484 after 0.71 seconds
+[0m15:43:08.657039 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8c8429a0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8a8a9580>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8a8900a0>]}
+[0m15:43:08.657476 [debug] [MainThread]: Flushing usage events
+[0m15:43:09.234204 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m15:45:04.518574 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8ce0ca30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8bf29580>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8bf29520>]}
+
+
+============================== 15:45:04.523119 | 3989c0a5-e6db-41c7-a823-d26f5c87d108 ==============================
+[0m15:45:04.523119 [info ] [MainThread]: Running with dbt=1.9.4
+[0m15:45:04.523721 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/opt/airflow/dags/dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': '/opt/airflow/dags/dbt/homework/logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'log_format': 'default', 'introspect': 'True', 'target_path': 'None', 'invocation_command': 'dbt --profile my_dbt_project run --project-dir=/opt/airflow/dags/dbt/homework --models models/mart --vars {"is_test": false, "data_date": "2025-05-10"}', 'send_anonymous_usage_stats': 'True'}
+[0m15:45:04.632028 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8b4b9a60>]}
+[0m15:45:04.664300 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8bfbb220>]}
+[0m15:45:04.665132 [info ] [MainThread]: Registered adapter: postgres=1.9.0
+[0m15:45:04.728399 [debug] [MainThread]: checksum: a0841b9e95e4ad17bec1bf740851d7b012e6cf6b937585e2bd7e396b95b8b6ff, vars: {'data_date': '2025-05-10', 'is_test': False}, profile: my_dbt_project, target: , version: 1.9.4
+[0m15:45:04.837399 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m15:45:04.838085 [debug] [MainThread]: Partial parsing: updated file: homework://models/mart/iris_processed.sql
+[0m15:45:05.087509 [warn ] [MainThread]: [[33mWARNING[0m]: Configuration paths exist in your dbt_project.yml file which do not apply to any resources.
+There are 1 unused configuration paths:
+- seeds.homework.iris_dataset
+[0m15:45:05.095881 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8ad18f10>]}
+[0m15:45:05.159209 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dags/dbt/homework/target/manifest.json
+[0m15:45:05.163880 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dags/dbt/homework/target/semantic_manifest.json
+[0m15:45:05.175230 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8ad49280>]}
+[0m15:45:05.175770 [info ] [MainThread]: Found 2 models, 1 source, 587 macros
+[0m15:45:05.176214 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8ad55310>]}
+[0m15:45:05.177317 [info ] [MainThread]: 
+[0m15:45:05.177708 [info ] [MainThread]: Concurrency: 4 threads (target='dev')
+[0m15:45:05.178096 [info ] [MainThread]: 
+[0m15:45:05.178589 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m15:45:05.179403 [debug] [ThreadPool]: Acquiring new postgres connection 'list_analytics'
+[0m15:45:05.201534 [debug] [ThreadPool]: Using postgres connection "list_analytics"
+[0m15:45:05.202102 [debug] [ThreadPool]: On list_analytics: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "list_analytics"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m15:45:05.202487 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m15:45:05.213281 [debug] [ThreadPool]: SQL status: SELECT 6 in 0.011 seconds
+[0m15:45:05.214304 [debug] [ThreadPool]: On list_analytics: Close
+[0m15:45:05.217523 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_analytics, now list_analytics_analytics)
+[0m15:45:05.221880 [debug] [ThreadPool]: Using postgres connection "list_analytics_analytics"
+[0m15:45:05.222341 [debug] [ThreadPool]: On list_analytics_analytics: BEGIN
+[0m15:45:05.222714 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m15:45:05.231158 [debug] [ThreadPool]: SQL status: BEGIN in 0.008 seconds
+[0m15:45:05.231648 [debug] [ThreadPool]: Using postgres connection "list_analytics_analytics"
+[0m15:45:05.232051 [debug] [ThreadPool]: On list_analytics_analytics: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "list_analytics_analytics"} */
+select
+      'analytics' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'analytics' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'analytics'
+    union all
+    select
+      'analytics' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'analytics'
+  
+[0m15:45:05.235918 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.003 seconds
+[0m15:45:05.236883 [debug] [ThreadPool]: On list_analytics_analytics: ROLLBACK
+[0m15:45:05.237386 [debug] [ThreadPool]: On list_analytics_analytics: Close
+[0m15:45:05.240757 [debug] [MainThread]: Using postgres connection "master"
+[0m15:45:05.241235 [debug] [MainThread]: On master: BEGIN
+[0m15:45:05.241580 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m15:45:05.248777 [debug] [MainThread]: SQL status: BEGIN in 0.007 seconds
+[0m15:45:05.249217 [debug] [MainThread]: Using postgres connection "master"
+[0m15:45:05.249642 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m15:45:05.253065 [debug] [MainThread]: SQL status: SELECT 0 in 0.003 seconds
+[0m15:45:05.253991 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8adc7fa0>]}
+[0m15:45:05.254500 [debug] [MainThread]: On master: ROLLBACK
+[0m15:45:05.254986 [debug] [MainThread]: Using postgres connection "master"
+[0m15:45:05.255347 [debug] [MainThread]: On master: BEGIN
+[0m15:45:05.255889 [debug] [MainThread]: SQL status: BEGIN in 0.000 seconds
+[0m15:45:05.256290 [debug] [MainThread]: On master: COMMIT
+[0m15:45:05.256638 [debug] [MainThread]: Using postgres connection "master"
+[0m15:45:05.256980 [debug] [MainThread]: On master: COMMIT
+[0m15:45:05.257416 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m15:45:05.257772 [debug] [MainThread]: On master: Close
+[0m15:45:05.260603 [debug] [Thread-1  ]: Began running node model.homework.iris_processed
+[0m15:45:05.261268 [info ] [Thread-1  ]: 1 of 1 START sql table model analytics.iris_processed .......................... [RUN]
+[0m15:45:05.261766 [debug] [Thread-1  ]: Re-using an available connection from the pool (formerly list_analytics_analytics, now model.homework.iris_processed)
+[0m15:45:05.262225 [debug] [Thread-1  ]: Began compiling node model.homework.iris_processed
+[0m15:45:05.274661 [debug] [Thread-1  ]: Using postgres connection "model.homework.iris_processed"
+[0m15:45:05.275133 [debug] [Thread-1  ]: On model.homework.iris_processed: /* {"app": "dbt", "dbt_version": "1.9.4", "profile_name": "my_dbt_project", "target_name": "dev", "node_id": "model.homework.iris_processed"} */
+
+        select percentile_cont(0.5) within group (order by sepal_length ) from "analytics"."analytics"."stg_iris"
+    
+[0m15:45:05.275539 [debug] [Thread-1  ]: Opening a new connection, currently in state closed
+[0m15:45:05.283027 [debug] [Thread-1  ]: Postgres adapter: Postgres error: relation "analytics.stg_iris" does not exist
+LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                             ^
+
+[0m15:45:05.284757 [debug] [Thread-1  ]: On model.homework.iris_processed: Close
+[0m15:45:05.286828 [debug] [Thread-1  ]: Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^
+[0m15:45:05.288104 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '3989c0a5-e6db-41c7-a823-d26f5c87d108', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8cc70fd0>]}
+[0m15:45:05.288722 [error] [Thread-1  ]: 1 of 1 ERROR creating sql table model analytics.iris_processed ................. [[31mERROR[0m in 0.03s]
+[0m15:45:05.289245 [debug] [Thread-1  ]: Finished running node model.homework.iris_processed
+[0m15:45:05.289727 [debug] [Thread-7  ]: Marking all children of 'model.homework.iris_processed' to be skipped because of status 'error'.  Reason: Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^.
+[0m15:45:05.290794 [debug] [MainThread]: Using postgres connection "master"
+[0m15:45:05.291178 [debug] [MainThread]: On master: BEGIN
+[0m15:45:05.291569 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m15:45:05.298765 [debug] [MainThread]: SQL status: BEGIN in 0.007 seconds
+[0m15:45:05.299214 [debug] [MainThread]: On master: COMMIT
+[0m15:45:05.299583 [debug] [MainThread]: Using postgres connection "master"
+[0m15:45:05.299931 [debug] [MainThread]: On master: COMMIT
+[0m15:45:05.300388 [debug] [MainThread]: SQL status: COMMIT in 0.000 seconds
+[0m15:45:05.300756 [debug] [MainThread]: On master: Close
+[0m15:45:05.301205 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m15:45:05.301558 [debug] [MainThread]: Connection 'model.homework.iris_processed' was properly closed.
+[0m15:45:05.301937 [info ] [MainThread]: 
+[0m15:45:05.302331 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.12 seconds (0.12s).
+[0m15:45:05.302884 [debug] [MainThread]: Command end result
+[0m15:45:05.333548 [debug] [MainThread]: Wrote artifact WritableManifest to /opt/airflow/dags/dbt/homework/target/manifest.json
+[0m15:45:05.335084 [debug] [MainThread]: Wrote artifact SemanticManifest to /opt/airflow/dags/dbt/homework/target/semantic_manifest.json
+[0m15:45:05.339054 [debug] [MainThread]: Wrote artifact RunExecutionResult to /opt/airflow/dags/dbt/homework/target/run_results.json
+[0m15:45:05.339427 [info ] [MainThread]: 
+[0m15:45:05.339837 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m15:45:05.340205 [info ] [MainThread]: 
+[0m15:45:05.340595 [error] [MainThread]:   Database Error in model iris_processed (models/mart/iris_processed.sql)
+  relation "analytics.stg_iris" does not exist
+  LINE 3: ...t(0.5) within group (order by sepal_length ) from "analytics...
+                                                               ^
+[0m15:45:05.340976 [info ] [MainThread]: 
+[0m15:45:05.341334 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m15:45:05.342050 [debug] [MainThread]: Resource report: {"command_name": "run", "command_success": false, "command_wall_clock_time": 0.85691786, "process_in_blocks": "0", "process_kernel_time": 0.151967, "process_mem_max_rss": "112504", "process_out_blocks": "0", "process_user_time": 1.615925}
+[0m15:45:05.342559 [debug] [MainThread]: Command `dbt run` failed at 15:45:05.342501 after 0.86 seconds
+[0m15:45:05.342968 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8ce0ca30>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8b4b9a60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0xffff8afc2910>]}
+[0m15:45:05.343371 [debug] [MainThread]: Flushing usage events
+[0m15:45:05.904293 [debug] [MainThread]: An error was encountered while trying to flush usage events
