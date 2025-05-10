@@ -3,6 +3,7 @@ from datetime import timedelta
 from datetime import datetime
 import os
 from dbt_operator import DbtOperator
+from airflow.utils.dates import days_ago
 
 
 ANALYTICS_DB = os.getenv('ANALYTICS_DB', 'analytics')
