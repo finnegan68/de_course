@@ -4,8 +4,7 @@ from datetime import datetime
 import os
 from dbt_operator import DbtOperator
 from airflow.utils.dates import days_ago
-from python_scripts.iris_ml_processor import process_iris_data
-
+from dags.python_scripts.iris_ml_processor import process_iris_data
 
 
 ANALYTICS_DB = os.getenv('ANALYTICS_DB', 'analytics')
