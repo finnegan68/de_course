@@ -5,6 +5,10 @@ import os
 from airflow.operators.python import PythonOperator
 from airflow.operators.email import EmailOperator
 from python_scripts.train_model import process_iris_data
+from datetime import datetime, timedelta
+import pendulum
+
+kyiv_tz = pendulum.timezone("Europe/Kyiv")
 
 
 
@@ -33,13 +37,17 @@ default_args = {
 }
 
 
-dag = DAG(dag_id='process_iris',
-        default_args=default_args,
-        description='Run dbt model, train ML model, and send email notification',
-        schedule_interval=None,
-        start_date=days_ago(1),
-        catchup=False,
-        tags=['iris', 'ml', 'dbt']) 
+dag = DAG(
+    dag_id='process_iris',
+    default_args=default_args,
+    description='Run dbt model, train ML model, and send email notification',
+    schedule_interval='0 1 * * *',  
+    start_date=datetime(2025, 4, 22, tzinfo=kyiv_tz),
+    end_date=datetime(2025, 4, 24, tzinfo=kyiv_tz),
+    catchup=True,  
+    tags=['iris', 'ml', 'dbt'],
+    timezone=kyiv_tz
+)
 
     
 run_dbt = DbtOperator(
