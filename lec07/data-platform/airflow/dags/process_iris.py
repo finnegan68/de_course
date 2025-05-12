@@ -1,13 +1,9 @@
 from airflow import DAG
 from dbt_operator import DbtOperator
 from airflow.utils.dates import days_ago
-import sys
 import os
 from airflow.operators.python import PythonOperator
 from airflow.operators.email import EmailOperator
-
-
-#sys.path.append(os.path.join(os.path.dirname(__file__), 'python_scripts'))
 from python_scripts.train_model import process_iris_data
 
 
@@ -16,19 +12,19 @@ ANALYTICS_DB = os.getenv('ANALYTICS_DB', 'analytics')
 PROJECT_DIR = os.getenv('AIRFLOW_HOME')+"/dags/dbt/homework"
 PROFILE = 'my_dbt_project'
 
-# Environment variables to pass to dbt
+
 env_vars = {
     'ANALYTICS_DB': ANALYTICS_DB,
     'DBT_PROFILE': PROFILE
 }
 
-# Example of variables to pass to dbt
+
 dbt_vars = {
     'is_test': False,
-    'data_date': '{{ ds }}',  # Uses Airflow's ds (execution date) macro
+    'data_date': '{{ ds }}', 
 }
 
-# Default arguments for the DAG
+
 default_args = {
     'owner': 'airflow',
     'email': ['ilya.linetski@gmail.com'],  # Replace with your email
@@ -36,7 +32,7 @@ default_args = {
     'email_on_retry': False,
 }
 
-# Define DAG
+
 dag = DAG(dag_id='process_iris',
         default_args=default_args,
         description='Run dbt model, train ML model, and send email notification',
@@ -45,7 +41,7 @@ dag = DAG(dag_id='process_iris',
         catchup=False,
         tags=['iris', 'ml', 'dbt']) 
 
-    # Step 1: Run dbt model
+    
 run_dbt = DbtOperator(
         task_id='dbt_run',
         dag=dag,
@@ -57,7 +53,7 @@ run_dbt = DbtOperator(
         vars=dbt_vars,
     )
 
-'''
+
 train_model_task = PythonOperator(
         task_id='train_model',
         dag=dag,
@@ -73,7 +69,6 @@ notify_email = EmailOperator(
         subject='Airflow DAG process_iris Succeeded',
         html_content='The DAG <b>process_iris</b> completed successfully.',
     )
-'''
 
-#run_dbt >> train_model_task >> notify_email
-run_dbt
+
+run_dbt >> train_model_task >> notify_email

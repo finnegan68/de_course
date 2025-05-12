@@ -25,9 +25,8 @@ def process_iris_data(**kwargs):
     engine = create_engine(conn_string)
     
     # Query the processed Iris data from the dbt-transformed table
-    query = """
-    SELECT * FROM homework.iris_processed
-    """
+    #query = 'SELECT * FROM homework.iris_processed'
+    query = 'SELECT * FROM analytics.iris_processed'
     
     df = pd.read_sql(query, engine)
     print(f"Loaded data: {df.shape[0]} rows, {df.shape[1]} columns")
